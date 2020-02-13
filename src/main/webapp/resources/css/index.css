@@ -1,0 +1,473 @@
+@import url('jquery-ui.min.css');
+/*@import url('theme.css');*/
+@import url('jquery.mCustomScrollbar.css');
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+/* Основные классы */
+.d-none {display: none;}
+.title {
+    color: #fbeaa1;
+    font-size: 16px;
+}
+.center {text-align: center;}
+/* Блок карты */
+#map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #000000;
+    z-index: 1;
+}
+/* Подложка */
+#back {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #000000;
+    z-index: 10000;
+    opacity: 0.7;
+}
+/* Начальный экран */
+#pointer {
+    color: #ffffff;
+    z-index: 6;
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    text-align: center;
+}
+#pointer img {
+    width: 30%;
+    height: 30%;
+}
+#pointer p {
+    width: 50%;
+    font-size: 1rem;
+    text-align: center;
+    margin: 1rem auto;
+}
+/*Нижнее меню*/
+#bottomBlock {
+    width: 750px;
+    position: fixed;
+    bottom: 3%;
+    z-index: 0;
+    left: calc(50% - 375px);
+    display: none;
+}
+.mac {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+.boofer {
+    height: 110px;
+    width: 100%;
+}
+#macpBottom {
+    width: 100%;
+    height: 180px;
+    background: url(../img/back.png) no-repeat 0 101%;
+}
+.icoblock { margin-left: 1%;}
+.item, .item3 {
+    margin-left: 25px;
+    float: left;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    text-align: left;
+    cursor: pointer;
+}
+.item img, .item3 img {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+.item1, .item4 {
+    float: left;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    text-align: left;
+    cursor: pointer;
+}
+.item1 img, .item4 img {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+.item2 {
+    width: 58px;
+    height: 50px;
+    float: left;
+    position: relative;
+    top: 20px;
+    background: url(../img/separator.png) no-repeat;
+}
+.ref {
+    width: 50px;
+    height: 50px;
+    margin-top: 40px;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+    position: absolute;
+}
+.blockIn {
+    width: 750px;
+    position: absolute;
+    bottom: 13%;
+    left: calc(50% - 375px);
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 15px #a9a9a9;
+    -moz-box-shadow: 8px 8px 20px #a9a9a9;
+    z-index: 0;
+    display: none;
+    color: #ffffff;
+}
+.blockIn h2 {
+    text-align: center;
+    background: #000000;
+    padding: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    box-shadow: 4px 4px 15px #a9a9a9;
+    -moz-box-shadow: 8px 8px 20px #a9a9a9;
+}
+.blockIn table {
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
+.blockIn table td {padding: 6px;}
+/* Верхнее меню */
+#topBlock {
+    width: 840px;
+    position: fixed;
+    z-index: 0;
+    left: calc(50% - 420px);
+    display: none;
+    top: -8%;
+}
+.macUp {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+#macpUp {
+    width: 100%;
+    height: 180px;
+    background: url(../img/back_new.png) no-repeat 0 101%;
+    position: relative;
+}
+.chpok:hover {height: 100vh;}
+.chpok:hover .blockUp {display: block;}
+.blockUp {
+    position: absolute;
+    top: 103%;
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 15px #a9a9a9;
+    -moz-box-shadow: 8px 8px 20px #a9a9a9;
+    z-index: 0;
+    display: none;
+    color: #ffffff;
+    text-align: center;
+    z-index: 0;
+    padding-bottom: 10px;
+}
+.blockUp .active {
+    color: #000000;
+    background-color: #ffcc66!important;
+    border-top: 2px solid #cccccc!important;
+    border-left: 2px solid #cccccc!important;
+    border-bottom: 1px solid #cccccc!important;
+    border-right: 2px solid #cccccc!important;
+    border-radius: 0!important;
+}
+.blockUp h2 {
+    text-align: center;
+    padding: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    box-shadow: 4px 4px 15px #a9a9a9;
+    -moz-box-shadow: 8px 8px 20px #a9a9a9;
+}
+.imgUp {
+    height: 80px!important;
+    width: 80px!important;
+    margin: -30px 0 0 -15px!important;
+}
+.imgUp1 {
+    height: 80px!important;
+    width: 80px!important;
+    margin: 50px 0 0 -15px!important;
+}
+/* Правый блок */
+#rightBlock {
+    width: 400px;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 15px #a9a9a9;
+    -moz-box-shadow: 8px 8px 20px #a9a9a9;
+}
+#rightBlock h2,  #rightBlock h3{
+    text-align: left;
+    background: #000000;
+    padding: 7px;
+    box-shadow: 4px 4px 15px #a9a9a9;
+    -moz-box-shadow: 8px 8px 20px #a9a9a9;
+    color: #ffffff;
+  }
+#resizable {
+    width: 100%;
+    height: 100vh;
+    border-bottom: 2px solid #ffffff;
+    text-align: center;
+    /*overflow: auto;
+    overflow-x: hidden;*/
+}
+.blockUp button {
+    text-align: left;
+    width: 95% !important;
+    margin: 1% auto;
+    background-color: #cccccc!important;
+    color: #000000!important;
+    border-top: 2px solid #ffffff!important;
+    border-left: 2px solid #ffffff!important;
+    border-bottom: 1px solid #ffffff!important;
+    border-right: 2px solid #ffffff!important;
+    border-radius: 0!important;
+    padding: 7px;
+}
+#resizable button, .tabs input {
+    text-align: left;
+    width: 95% !important;
+    margin: 1% auto;
+    background-color: #000000!important;
+    color: #ffffff!important;
+    border-top: 2px solid #666666!important;
+    border-left: 2px solid #666666!important;
+    border-bottom: 1px solid #666666!important;
+    border-right: 2px solid #666666!important;
+    border-radius: 0!important;
+    padding: 7px;
+}
+.blockUp button:hover, #resizable button:hover, .tabs input:hover, #resizable button.active  {
+    color: #000000!important;
+    background-color: #ffcc66!important;
+    border-top: 2px solid #cccccc!important;
+    border-left: 2px solid #cccccc!important;
+    border-bottom: 1px solid #cccccc!important;
+    border-right: 2px solid #cccccc!important;
+    border-radius: 0!important;
+}
+.tabs input.active  {
+    color: #000000!important;
+    background-color: #ffcc66!important;
+    border-top: 2px solid #cccccc!important;
+    border-left: 2px solid #cccccc!important;
+    border-bottom: 1px solid #cccccc!important;
+    border-right: 2px solid #cccccc!important;
+    border-radius: 0!important;
+}
+/* Табы в правом блоке */
+#tabsBlock {
+    width: 100%;
+    overflow: auto;
+    /*overflow-x: hidden;*/
+    min-height: 1000px;
+    height: 1000px;
+    position: absolute;
+    z-index: 20;
+}
+#tabs {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4)!important;
+    font-size: 10px;
+    padding-bottom: 500px!important;
+    border: none!important;
+}
+#tabs table {width: 96%;}
+#tabs td {
+    width: 50%;
+    color: #ffffff;
+}
+#tabs ul {
+    border-top: none!important;
+    border-left: none!important;
+    border-right: none!important;
+    border-bottom: 1px solid #000000!important;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.4)!important;
+}
+#tabs ul li {
+    width: 35px;
+    height: 35px;
+    border: none!important;
+    margin-bottom: 0!important;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.4)!important;
+}
+.miniImg {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 0;
+    left: 0;
+}
+#tabs .ui-tabs-active {
+    border-top: 1px solid #ffcc66!important;
+    border-left: 1px solid #ffcc66!important;
+    border-right: 1px solid #ffcc66!important;
+}
+#tabs .ui-tabs-anchor {
+    width: 100%;
+    height: 100%;
+}
+#tabs .ui-state-active {
+    background: #ffcc66!important;
+    border: none!important;
+}
+/* Всплывающие подсказки */
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 1px solid white;
+}
+.ui-tooltip {
+    padding: 5px 10px;
+    color: #ffffff;
+    border-radius: 7px;
+    font-size: 12px;
+    box-shadow: 0 0 7px black;
+}
+.arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+}
+.arrow.top {
+    top: -16px;
+    bottom: auto;
+}
+.arrow.left {
+    left: 20%;
+}
+.arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.arrow.top:after {
+    bottom: -20px;
+    top: auto;
+}
+/* Кноки */
+.saveBlock {
+    padding: 10px 0;
+    text-align: center;
+    background: #000000;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    clear: both;
+}
+
+.clr {clear: both;}
+.buttonsBlock {
+    margin-bottom: 26px;
+    padding-left: 10px;
+}
+.buttonsBlock button {
+    float: left;
+    margin-left: 6px;
+}
+/* Блок сообщений */
+/*#alertBlcok {
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+    position: absolute;
+    display: table-cell;
+    vartical-align: middle;
+    text-align: center;
+    z-index: 15;
+    top: calc(50% - 200px);
+    left: calc(50% - 200px);
+}*/
+#btnCorrect, #btnCorrect1, #btnSave, #btnSave1, #btnChange {
+    background: #666666;
+    color: #ffffff;
+}
+
+#btnCorrect:hover, #btnCorrect1:hover, #btnSave:hover, #btnSave1:hover, #btnChange:hover {
+    background: #cccccc;
+    color: #000000;
+}
+#controlGroup {
+    position: relative;
+    float: left;
+    /*border: 1px solid #ff0000;*/
+}
+#dropDown {
+    width: 150px;
+    position: absolute;
+    display: none;
+    background: #cccccc;
+    color: #000000;
+    z-index: 15;
+    top: 26px;
+    border-radius: 7px;
+    text-align: left;
+    margin-left: 6px;
+}
+#dropDown p {
+    border: 1px solid #ffffff;
+    padding: 2px 5px 2px 10px;
+    cursor: pointer;
+}
+#dropDown p:hover {
+    background: #ffcc66;
+}
+#controlGroup:hover #dropDown {display: block;}
+/* Блок координат */
+.coordinates {
+    color: white;
+    text-align: center;
+    position: fixed;
+    z-index: 4;
+    margin: 0 auto;
+    clear: both;
+    width: 14%;
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    border: 1px solid transparent;
+    transition-property: background-color, box-shadow, border-color;
+    transition-duration: 0.5s;
+    transition: transform .2s;
+}
